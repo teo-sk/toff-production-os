@@ -10,7 +10,7 @@ Roles describe **jobs**, not necessarily eight concurrent processes. One agent m
 | Game Design Agent | GDD, balance proposals, specs | Chat models | Recommends; no silent spec changes |
 | Technical Lead Agent | Architecture plans, impact | Cursor + repo | Drafts; significant changes need approval |
 | Implementation Agent | Code, tests, docs | Cursor + Git | Within task scope |
-| Unity Editor Agent | Scene/prefab/inspector | Unity MCP (optional) | Scoped mutations after identity check |
+| Unity Editor Agent | Scene/prefab/inspector | Unity CLI Direct / CLI MCP / legacy MCP (optional) | Scoped mutations after identity + capability check |
 | Art Direction Agent | Visual language, asset briefs | Chat + art tools | Proposes; approved guide wins |
 | QA Agent | Cases, verification, blockers | UTF, validate.sh | Can block promotion on failed checks |
 | Build & Release Agent | Builds, metadata | Batchmode / CI | No unapproved publish |

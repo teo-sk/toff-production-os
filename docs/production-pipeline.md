@@ -22,7 +22,7 @@ Stages may loop backwards. Kill criteria belong in the concept/GDD.
 2. **Spec** — bounded feature contract (see feature template).  
 3. **Plan** — inspect real codebase; list files, risks, tests; do not invent facts.  
 4. **Implement** — feature branch; focused diff.  
-5. **Editor work** (if needed) — MCP or manual Editor with identity + exclusivity rules.  
+5. **Editor work** (if needed) — verified Unity tooling backend or manual Editor with identity + exclusivity rules.  
 6. **Validate** — compile/tests/manual notes per [validation-strategy.md](validation-strategy.md).  
 7. **Review** — diff vs spec; human for feel/architecture/release.  
 8. **Merge & record** — update status docs/ADRs when behavior changes.

@@ -1,37 +1,54 @@
 ---
-description: Safe Unity MCP usage — exact project-root identity, mutation limits, evidence honesty
+description: Safe Unity Editor tooling — identity, backends, mutation limits, evidence honesty
 alwaysApply: true
 ---
 
-# Unity MCP safety
+# Unity tooling safety
 
-Authoritative: [AGENTS.md](../../AGENTS.md), [docs/05-qa-plan.md](../../docs/05-qa-plan.md).
+Authoritative: [AGENTS.md](../../AGENTS.md), [docs/05-qa-plan.md](../../docs/05-qa-plan.md).  
+Studio contract (when available): Production OS `docs/unity-tooling.md`.
 
-MCP is **optional**. If disconnected or identity tools fail: no MCP mutations; continue with code/docs/tests; report identity **unverified**.
+Unity CLI, Pipeline, and MCP are **optional**. Prefer a backend only when the **needed capability** is verified for this exact project. Do not select CLI merely because a `unity` binary exists. Do not silently fall back to another backend for mutations.
+
+If tooling is disconnected or identity unverifiable: no Editor mutations; continue with code/docs/tests; report identity **unverified**.
 
 ## Before any mutation — exact identity
 
-1. Canonicalize **repo root** (absolute path; resolve symlinks).
-2. Canonicalize MCP **project root** (`GetProjectRoot` or equivalent).
+1. Canonicalize **repo / project root** (absolute path; resolve symlinks).
+2. Canonicalize the tooling-reported project path (CLI `projectPath`, MCP `GetProjectRoot`, or equivalent).
 3. **Require exact string equality.** Refuse mutation if they differ or either cannot be verified.
-4. Do not use name/suffix heuristics or hardcoded user home paths. Worktrees are OK when paths match exactly.
+4. Do not use name/suffix heuristics or hardcoded user home paths.
 5. Confirm **active scene** or target asset matches the task.
 6. Prefer a clean git checkpoint or document pre-existing dirty state.
 7. One writable Editor session — do not race another agent on the same scene/prefab.
 
+## Permission levels
+
+- **READ** — status, inspect scene/console, safe captures, capability detection.
+- **CONTROLLED_WRITE** — approved named commands within explicit scope (task-bound).
+- **ARBITRARY_EXECUTION** — eval, unrestricted C#, package ops, arbitrary scripts — **separate explicit approval**.
+
 ## Allowed without special approval
 
-Read-only inspect: project data, console, hierarchy, package **get**, editor get-state, captures for evidence.
+Read-only inspect: project data, console, hierarchy, package **get**, editor get-state, captures for evidence, read-only capability detection.
 
 ## Requires explicit task permission
 
-Scene/prefab/GameObject mutation, script create/delete via MCP, menu execute, package install/upgrade, AssetGeneration, Play Mode control for demos.
+Scene/prefab/GameObject mutation, script create/delete via tooling, menu execute, package install/upgrade, AssetGeneration, Play Mode control for demos, closing the Editor to run batch tests.
+
+## Never do automatically
+
+- Install/upgrade Unity packages (including Pipeline)
+- Rewrite Cursor MCP / `unity mcp configure`
+- Force-quit the user’s Editor
+- Invoke arbitrary C# eval for routine inspect/mutate work
+- Claim gameplay proof from tooling success or screenshots alone
 
 ## After mutations
 
 - Read console for errors/warnings introduced by the change.
 - Read back changed properties; confirm they match the approved target.
-- For scene/prefab edits: inspect the **complete** serialized Git diff. Identify unexpected YAML (including incidental serialization of previously missing fields). Evaluate semantic impact vs C# defaults; report or resolve safely. Do not delete fields solely to force a one-line diff without validating serialization behavior.
+- For scene/prefab edits: inspect the **complete** serialized Git diff (incidental YAML included).
+- If captures were requested: verify on-disk paths (CLI may remap into `Assets/`); prefer evidence outside `Assets/` when supported.
 - Report: succeeded / failed / **not Play Mode–verified**.
-- Never claim correct gameplay from MCP success or a screenshot alone.
-- Distinguish Console inspection, visual observation, and actual input/gameplay interaction tests.
+- Distinguish Console inspection, visual observation (Scene View ≠ Main Camera), and actual gameplay interaction tests.

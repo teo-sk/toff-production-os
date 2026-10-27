@@ -34,8 +34,9 @@ Install Production OS templates into a Unity game repository.
 9. Prints a post-bootstrap report (verified vs inferred vs unknown).  
 
 **Never** runs against the Production OS repo itself.  
-**Never** installs Unity packages or edits gameplay code / scenes / assets / `ProjectSettings`.  
-**Never** launches Unity, creates remotes, commits, pushes, or initializes Git.
+**Never** installs Unity packages (including Pipeline) or edits gameplay code / scenes / assets / `ProjectSettings`.  
+**Never** launches Unity, creates remotes, commits, pushes, initializes Git, or rewrites Cursor MCP configuration.  
+**Never** requires Unity CLI — projects without CLI/Pipeline remain valid consumers.
 
 ## Safety guarantees
 
@@ -84,6 +85,17 @@ The report lists verified, inferred, and unknown values explicitly. Weak heurist
 - Physical containment uses `realpath` / `python3` canonicalization; exotic network filesystems may differ.
 - Missing Unity metadata is reported honestly; templates may still be installed for docs/rules onboarding.
 - No automatic upgrade / three-way merge for customized consumer files beyond re-running with careful `--force` review.
+- Existing **v0.2** projects do **not** require migration for v0.3. To manually adopt new templates (updated Unity tooling safety wording, tooling completion report): `--dry-run`, then selective copy or `--force` with human review of diffs.
+
+## Optional Unity capability detection
+
+From the Production OS repository (read-only; does not mutate the game):
+
+```bash
+./scripts/unity-capability-detect.sh /absolute/path/to/game-repo
+```
+
+See [docs/unity-tooling.md](../docs/unity-tooling.md). Bootstrap does **not** install this script into games.
 
 ## After bootstrap
 

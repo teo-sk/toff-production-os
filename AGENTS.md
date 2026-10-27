@@ -18,6 +18,7 @@ This repository contains **no Unity project**. Do not invent game mechanics, sce
 | [docs/philosophy.md](docs/philosophy.md) | Studio process principles |
 | [docs/production-pipeline.md](docs/production-pipeline.md) | Lifecycle / stage gates |
 | [docs/studio-vs-project.md](docs/studio-vs-project.md) | Boundary between OS and games |
+| [docs/unity-tooling.md](docs/unity-tooling.md) | Unity tooling contract, backends, safety, evidence |
 | [templates/](templates/) | Installable defaults for game repos |
 | [examples/](examples/) | Pilot evidence (reference only) |
 | [CHANGELOG.md](CHANGELOG.md) | Released framework changes |
@@ -39,8 +40,9 @@ Agents **must not** rewrite philosophy or safety rules to match a single game’
 1. **Understand** — which consumers are affected; version impact.  
 2. **Plan** — list template/docs/script files; note breaking changes for bootstrap.  
 3. **Implement** — focused diff; keep templates placeholder-driven.  
-4. **Validate** — link checks, MDC frontmatter, `bash -n`, bootstrap `--help` / `--dry-run` on a disposable fixture (never a silent write to a live game).  
-5. **Review** — update CHANGELOG + VERSION when releasing; human approval for safety-rule changes.
+4. **Validate** — link checks, MDC frontmatter, `bash -n`, bootstrap `--help` / `--dry-run` on a disposable fixture (never a silent write to a live game), capability-detect + bootstrap test suites when those scripts change.  
+5. **Review** — update CHANGELOG + VERSION when releasing; human approval for safety-rule changes.  
+6. **Do not** mutate consumer games (Nehokej, WheelDraw, SOWA, …) unless the task explicitly names a target path.
 
 ## Git safety
 

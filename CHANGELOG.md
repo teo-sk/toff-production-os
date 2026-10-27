@@ -3,21 +3,59 @@
 All notable changes to TOFF Games Production OS are documented here.  
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) ideas; versioning is [SemVer](https://semver.org/).
 
-## [Unreleased]
-
-### Fixed
-
-- Bootstrap path safety: reject destination symlink components; require physical containment under the canonical target root (normal and `--force`).
-- Bootstrap Git identity: require exact equality between canonical target and `git rev-parse --show-toplevel`; reject nested paths that only belong to a parent repository.
-- Bootstrap discovery: directory basename and `.unity` candidates are marked `NEEDS_CONFIRMATION` / inferred — never treated as confirmed product or main-scene identity.
+## [0.3.0] — 2026-10-27
 
 ### Added
 
-- `bootstrap/tests/run-tests.sh` regression harness (disposable fixtures only) covering Git identity, symlink escape, dry-run, skip/`--force` safety, and unconfirmed metadata.
+- **Unity Tooling Contract** in [docs/unity-tooling.md](docs/unity-tooling.md): conceptual capabilities, permission levels (`READ` / `CONTROLLED_WRITE` / `ARBITRARY_EXECUTION`), backend selection rules, evidence strength, and safety policy.
+- Read-only [scripts/unity-capability-detect.sh](scripts/unity-capability-detect.sh) with machine-readable JSON and automated fixture tests under `scripts/tests/`.
+- Tooling completion-report template: `templates/docs/tooling-completion-report.template.md` (installed by bootstrap for new projects).
+- SOWA CLI/Pipeline pilot evidence under [examples/sowa-game/](examples/sowa-game/) (Tests A/B/C, lifecycle and capture lessons).
 
 ### Changed
 
-- `bootstrap/README.md` documents Git root identity, symlink policy, dry-run / existing-file / `--force` guarantees, verified vs inferred configuration, and TOCTOU assumptions.
+- Cursor rule `unity-mcp-safety.mdc` generalized to **Unity tooling safety** (CLI Direct / CLI MCP / legacy MCP) while keeping the filename for v0.2 compatibility.
+- `templates/AGENTS.template.md`, coding/tests and assets/scenes rules updated for capability-based backends and dual UTF routes.
+- [docs/validation-strategy.md](docs/validation-strategy.md), [docs/tooling.md](docs/tooling.md), philosophy/roadmap/studio-vs-project/agent docs aligned with the contract.
+- README documents optional Unity CLI integration, legacy MCP compatibility, readiness checks, and explicit non-automation boundaries.
+
+### Compatibility
+
+- **Backward compatible with v0.2 projects.** Bootstrap still works without Unity CLI or Pipeline.
+- Existing managed files are never silently overwritten (default skip; `--force` remains explicit).
+- Bootstrap does **not** install Unity packages or rewrite Cursor MCP configuration.
+- Nehokej and WheelDraw require **no** mandatory migration.
+- No automatic three-way merge upgrade system in this release; manual adopt via dry-run / selective `--force`.
+
+### Fixed (carried from post-0.2.0 main)
+
+- Bootstrap path safety, exact Git-root identity, and unconfirmed metadata reporting (see prior `fix(bootstrap)` commit on main). Included here so 0.3.0 consumers inherit the hardened bootstrap.
+
+### SOWA pilot learnings encoded
+
+- CLI Direct preferred when capability verified; package-installed ≠ service-reachable.
+- `unity test` (CLI `1.0.0-beta.8`) required exclusive project lock — do not auto-close Editors.
+- Legacy MCP may not auto-reconnect after Editor close/reopen.
+- Scene View captures do not prove Main Camera FOV; CLI capture paths may remap under `Assets/`.
+- Tooling smoke tests ≠ gameplay proof; experimental CLI/Pipeline pins are version-sensitive.
+
+### Known limitations
+
+- Capability detector does not probe legacy MCP session reachability (avoids false confidence / config mutation).
+- Detector does not execute tests or mutations; `AVAILABLE` for controlled write means backend readiness only.
+- CLI command surface may change across versions — re-verify with `unity --help` / detector.
+- Framework static self-checks ≠ production readiness; orchestrator not included.
+
+### Deferred
+
+- Headless Game Development Orchestrator (consumes this contract later).
+- Shared CI templates and release automation.
+- Automatic template three-way merge (`bootstrap --upgrade`).
+- Portfolio dashboard / issue-tracker integration.
+
+## [Unreleased]
+
+_(empty after 0.3.0 cut)_
 
 ## [0.2.0] — 2026-10-27
 
@@ -39,7 +77,6 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) ideas; v
 
 ### Known limitations
 
-- Bootstrap not yet rolled out to WheelDraw / SOWA / other titles.
 - Bootstrap destination checks are TOCTOU-sensitive if another process races path components during install (see bootstrap README).
 - Validate script does not provide CI runners, licensing, or device farms.
 - MCP remains optional and server-implementation-dependent.

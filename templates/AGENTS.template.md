@@ -38,37 +38,46 @@ Namespaces / assemblies: `{{NAMESPACES_OR_TODO}}`
 2. Default forbidden: `Packages/manifest.json`, silent `ProjectSettings/**`, secrets, store publish, bulk scene rewrites.  
 3. Do not add speculative packages unless the task and a human approve.  
 4. {{ARCHITECTURE_CONSTRAINTS_OR_TODO}}  
-5. Follow Production OS Unity MCP identity rules before any Editor mutation (see below).
+5. Follow Production OS Unity tooling identity rules before any Editor mutation (see below).
 
 ## Task lifecycle
 
 1. **Understand** — player outcome, linked spec, allowed/forbidden paths.  
 2. **Plan** — real files impacted; risks; do not invent project facts.  
 3. **Implement** — focused feature-branch diff.  
-4. **Validate** — `./scripts/validate.sh` when safe; otherwise report blocked + in-Editor alternative. Never claim tests passed without execution. (`--self-test` checks the script only.)  
+4. **Validate** — `./scripts/validate.sh` when safe; otherwise report blocked + in-Editor Test Runner / approved CLI UTF route. Never claim tests passed without execution. (`--self-test` checks the script only.)  
 5. **Review** — evidence, risks, rollback; human approval for core feel, packages, architecture, release.
 
-## Unity MCP — project identity
+## Unity tooling — backends and identity
 
-MCP is **optional**. If disconnected or identity unverifiable: continue with C# / docs / tests; report MCP unavailable and identity **unverified**.
+Unity CLI, Pipeline, and MCP are **optional**. Production OS does not require them. Prefer a backend only when the **needed capability** is verified for this exact project (capability-based selection). Do not choose CLI solely because a `unity` binary exists. Do not silently fall back to another backend for mutations.
 
-Before **any** Unity MCP mutation:
+Optional readiness check (from the Production OS repo, read-only):
 
-1. Canonicalize this repository’s absolute Git root.  
-2. Canonicalize MCP project root (`GetProjectRoot` or equivalent).  
+`./scripts/unity-capability-detect.sh /absolute/path/to/this/game`
+
+If tooling is disconnected or identity unverifiable: continue with C# / docs / tests; report tooling unavailable and identity **unverified**.
+
+Before **any** Editor mutation (CLI Direct, CLI MCP, or legacy MCP):
+
+1. Canonicalize this repository’s absolute Git / Unity project root.  
+2. Canonicalize the tooling-reported project path (`projectPath`, `GetProjectRoot`, or equivalent).  
 3. Require **exact string equality**; refuse mutations otherwise.  
 4. Do not use folder-name heuristics or hardcoded home paths.  
 5. Confirm active scene / target asset matches the task (default: `{{PRIMARY_SCENE}}`).  
 6. Prefer clean git checkpoint or document pre-existing dirty state.  
 7. One writable Editor session — do not race another agent on the same scene/prefab.
 
-After mutation: console check; property readback; **full serialized Git diff** for incidental YAML; report succeeded / failed / **not Play Mode–verified**. Never claim correct gameplay from MCP success alone.
+Do **not** auto-install packages, auto-close the Editor for batch tests, or rewrite MCP configuration.
+
+After mutation: console check; property readback; **full serialized Git diff** for incidental YAML; report succeeded / failed / **not Play Mode–verified**. Never claim correct gameplay from tooling success alone. Scene View captures do not prove Main Camera behavior.
 
 ## Task completion report
 
 - Summary of changes (paths)  
 - Acceptance: met / not met / deferred  
 - Validation: command, result (PASS/FAIL/BLOCKED/UNVERIFIED), evidence path — distinguish `--self-test` from UTF  
-- MCP: used? roots compared? mutations? console clean?  
+- Tooling: backend used? capability detect? roots compared? mutations? console clean?  
 - Risks / follow-ups  
 - Human approvals still needed  
+

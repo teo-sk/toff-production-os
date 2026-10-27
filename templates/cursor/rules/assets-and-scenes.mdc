@@ -11,7 +11,7 @@ Authoritative: [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md), art direction
 ## Scenes / prefabs
 
 - Primary gameplay scene: see AGENTS.md (`PRIMARY_SCENE` / project convention).
-- After any scene or prefab mutation (including Unity MCP): inspect the **complete** serialized Git diff. Identify unexpected YAML changes, evaluate semantic impact vs C# defaults / prior values, and report or safely resolve them before marking the task complete. Do not treat a successful tool response as a clean asset diff.
+- After any scene or prefab mutation (CLI Direct, MCP, or manual): inspect the **complete** serialized Git diff. Identify unexpected YAML changes, evaluate semantic impact vs C# defaults / prior values, and report or safely resolve them before marking the task complete. Do not treat a successful tool response as a clean asset diff.
 - Prefer intentional, reviewed changes; avoid bulk rewrites without approval.
 
 ## Assets

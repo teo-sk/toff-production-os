@@ -18,6 +18,8 @@ Authoritative: [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md), [docs/05-qa-p
 
 - Prefer **Edit Mode** Unity Test Framework tests for pure logic.
 - Play Mode only when input/scene lifetime truly requires it.
-- Validate with `scripts/validate.sh` when the Editor is not locking the project; otherwise use the in-Editor Test Runner and report that batchmode was blocked.
-- Never claim tests passed without actually running them.
+- Two official UTF routes: (A) in-Editor Test Runner while the session owns the project; (B) CLI/batchmode (`scripts/validate.sh` or approved `unity test`) when the project is not locked.
+- Never close the user’s Editor to unblock batch tests without explicit approval.
+- Never claim tests passed without actually running them; require exit code **and** complete results XML when using batch/CLI.
+- Distinguish tooling smoke tests from gameplay regression tests.
 - Do not treat custom reflection runners as equivalent to Unity Test Framework.
