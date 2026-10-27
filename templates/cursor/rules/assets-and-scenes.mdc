@@ -1,0 +1,25 @@
+---
+description: Scene, prefab, and ProjectSettings edit discipline
+globs: Assets/**/*.unity,Assets/**/*.prefab,Assets/Data/**,ProjectSettings/**
+alwaysApply: false
+---
+
+# Assets and scenes
+
+Authoritative: [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md), art direction docs if present.
+
+## Scenes / prefabs
+
+- Primary gameplay scene: see AGENTS.md (`PRIMARY_SCENE` / project convention).
+- After any scene or prefab mutation (including Unity MCP): inspect the **complete** serialized Git diff. Identify unexpected YAML changes, evaluate semantic impact vs C# defaults / prior values, and report or safely resolve them before marking the task complete. Do not treat a successful tool response as a clean asset diff.
+- Prefer intentional, reviewed changes; avoid bulk rewrites without approval.
+
+## Assets
+
+- Keep `.meta` files with their assets; never orphan or hand-edit GUIDs casually.
+- No prefab/ScriptableObject sprawl without a feature spec.
+
+## ProjectSettings / Packages
+
+- Do not change `ProjectSettings/**` or `Packages/manifest.json` unless the task explicitly allows it and a human approved.
+- After Editor mutations: inspect git diff for accidental settings/meta churn.

@@ -1,0 +1,37 @@
+---
+description: Task lifecycle, scope limits, and Definition of Done for every change
+alwaysApply: true
+---
+
+# Task delivery
+
+Authoritative: [AGENTS.md](../../AGENTS.md), [docs/features/](../../docs/features/), [docs/00-status.md](../../docs/00-status.md).
+
+## Lifecycle
+
+Understand → Plan → Implement → Validate → Review. Persist significant decisions in docs/ADRs, not only chat.
+
+## Scope
+
+- Stay inside the task’s allowed paths; report exceptions before expanding.
+- Default forbidden: `Packages/manifest.json`, silent `ProjectSettings/**` edits, secrets, store publish.
+- Do not expand into unrelated systems “while here.”
+
+## Design ownership
+
+- Approved GDD / architecture / feature acceptance / ADRs are intent — do not silently rewrite them to match code.
+- Status docs and implementation notes may be updated after verified changes.
+- On conflict with approved design: escalate with options.
+
+## Definition of Done
+
+- [ ] Acceptance criteria met or exceptions listed
+- [ ] Compiles on the project’s pinned Unity version (`ProjectSettings/ProjectVersion.txt`)
+- [ ] Relevant automated tests executed (or blocked reason + manual alternative)
+- [ ] Scene/prefab diffs reviewed if assets changed
+- [ ] Docs/ADR updated when behavior or architecture changes
+- [ ] Completion report per AGENTS.md
+
+## Human approval required
+
+Core gameplay/feel changes, package or Unity upgrades, release/store actions, bulk scene rewrites, new third-party dependencies.

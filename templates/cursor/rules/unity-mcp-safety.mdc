@@ -1,0 +1,37 @@
+---
+description: Safe Unity MCP usage — exact project-root identity, mutation limits, evidence honesty
+alwaysApply: true
+---
+
+# Unity MCP safety
+
+Authoritative: [AGENTS.md](../../AGENTS.md), [docs/05-qa-plan.md](../../docs/05-qa-plan.md).
+
+MCP is **optional**. If disconnected or identity tools fail: no MCP mutations; continue with code/docs/tests; report identity **unverified**.
+
+## Before any mutation — exact identity
+
+1. Canonicalize **repo root** (absolute path; resolve symlinks).
+2. Canonicalize MCP **project root** (`GetProjectRoot` or equivalent).
+3. **Require exact string equality.** Refuse mutation if they differ or either cannot be verified.
+4. Do not use name/suffix heuristics or hardcoded user home paths. Worktrees are OK when paths match exactly.
+5. Confirm **active scene** or target asset matches the task.
+6. Prefer a clean git checkpoint or document pre-existing dirty state.
+7. One writable Editor session — do not race another agent on the same scene/prefab.
+
+## Allowed without special approval
+
+Read-only inspect: project data, console, hierarchy, package **get**, editor get-state, captures for evidence.
+
+## Requires explicit task permission
+
+Scene/prefab/GameObject mutation, script create/delete via MCP, menu execute, package install/upgrade, AssetGeneration, Play Mode control for demos.
+
+## After mutations
+
+- Read console for errors/warnings introduced by the change.
+- Read back changed properties; confirm they match the approved target.
+- For scene/prefab edits: inspect the **complete** serialized Git diff. Identify unexpected YAML (including incidental serialization of previously missing fields). Evaluate semantic impact vs C# defaults; report or resolve safely. Do not delete fields solely to force a one-line diff without validating serialization behavior.
+- Report: succeeded / failed / **not Play Mode–verified**.
+- Never claim correct gameplay from MCP success or a screenshot alone.
+- Distinguish Console inspection, visual observation, and actual input/gameplay interaction tests.

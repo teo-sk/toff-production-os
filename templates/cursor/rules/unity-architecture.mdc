@@ -1,0 +1,26 @@
+---
+description: Optional architecture recommendations — customize per game; not a mandate to refactor
+globs: Assets/**/*.cs
+alwaysApply: false
+---
+
+# Unity architecture (recommendations)
+
+Authoritative for **this game**: [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md), [docs/decisions/](../../docs/decisions/).  
+This rule is a starting template — replace TODOs with the game’s real boundaries.
+
+## Defaults (optional)
+
+- Keep core rules independent of view/UI where practical.
+- Prefer simple composition and clear ownership over speculative frameworks.
+- Treat input, save data, settings, audio, UI, and analytics as explicit seams.
+- Lock Unity version and packages per project; never auto-upgrade across the portfolio.
+
+## Game-specific (fill in)
+
+- Dependency direction: `TODO`
+- Assemblies that must stay free of `UnityEngine`: `TODO` (or “none”)
+- Systems that alone decide legality / scoring: `TODO`
+- Folder layout to preserve (do not blind-reorganize): `TODO`
+
+Do not invent domain purity, graph models, or render-pipeline choices that this game does not use.

@@ -1,0 +1,23 @@
+---
+description: C# conventions and testing expectations — customize namespaces and paths per game
+globs: Assets/**/*.cs
+alwaysApply: false
+---
+
+# Coding and tests
+
+Authoritative: [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md), [docs/05-qa-plan.md](../../docs/05-qa-plan.md), [README.md](../../README.md).
+
+## Conventions
+
+- Namespaces / asmdefs: follow this game’s architecture (TODO if not documented).
+- Prefer simple composition. No speculative packages without approval.
+- Match existing style in the files you touch; avoid drive-by refactors.
+
+## Testing
+
+- Prefer **Edit Mode** Unity Test Framework tests for pure logic.
+- Play Mode only when input/scene lifetime truly requires it.
+- Validate with `scripts/validate.sh` when the Editor is not locking the project; otherwise use the in-Editor Test Runner and report that batchmode was blocked.
+- Never claim tests passed without actually running them.
+- Do not treat custom reflection runners as equivalent to Unity Test Framework.

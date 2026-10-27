@@ -1,0 +1,5 @@
+# Optional game-specific overrides for validate.sh.
+# Copy to scripts/validate.config.sh and edit.
+#
+# UTF_TEST_FILTER=""          # Unity -testFilter value; empty = all Edit Mode
+# RESULTS_XML_NAME="editmode-results.xml"
