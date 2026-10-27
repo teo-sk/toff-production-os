@@ -3,6 +3,22 @@
 All notable changes to TOFF Games Production OS are documented here.  
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) ideas; versioning is [SemVer](https://semver.org/).
 
+## [Unreleased]
+
+### Fixed
+
+- Bootstrap path safety: reject destination symlink components; require physical containment under the canonical target root (normal and `--force`).
+- Bootstrap Git identity: require exact equality between canonical target and `git rev-parse --show-toplevel`; reject nested paths that only belong to a parent repository.
+- Bootstrap discovery: directory basename and `.unity` candidates are marked `NEEDS_CONFIRMATION` / inferred — never treated as confirmed product or main-scene identity.
+
+### Added
+
+- `bootstrap/tests/run-tests.sh` regression harness (disposable fixtures only) covering Git identity, symlink escape, dry-run, skip/`--force` safety, and unconfirmed metadata.
+
+### Changed
+
+- `bootstrap/README.md` documents Git root identity, symlink policy, dry-run / existing-file / `--force` guarantees, verified vs inferred configuration, and TOCTOU assumptions.
+
 ## [0.2.0] — 2026-10-27
 
 ### Added
@@ -24,6 +40,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) ideas; v
 ### Known limitations
 
 - Bootstrap not yet rolled out to WheelDraw / SOWA / other titles.
+- Bootstrap destination checks are TOCTOU-sensitive if another process races path components during install (see bootstrap README).
 - Validate script does not provide CI runners, licensing, or device farms.
 - MCP remains optional and server-implementation-dependent.
 - No automatic upgrade path from older game installs beyond re-running bootstrap carefully.
