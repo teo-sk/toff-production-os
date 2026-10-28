@@ -1,6 +1,6 @@
 # Roadmap
 
-Production OS **0.3.0** adds the Unity tooling abstraction and capability detection after Nehokej, WheelDraw, and SOWA pilots. It remains intentionally incomplete relative to a full orchestrator.
+Production OS **0.3** adds the Unity tooling abstraction and capability detection based on verified pilots. It remains intentionally incomplete relative to a full orchestrator.
 
 ## Near term
 
@@ -14,7 +14,7 @@ Production OS **0.3.0** adds the Unity tooling abstraction and capability detect
 - CI workflow templates (GitHub Actions / other) with Unity licensing hooks as **adapters**.  
 - Release-candidate checklist automation (metadata only — no auto-publish).  
 - Versioned template upgrade helper (`bootstrap --upgrade` with three-way guidance).  
-- Headless-first **TOFF Game Development Orchestrator** consuming the Unity Tooling Contract.
+- Headless-first Game Development Orchestrator consuming the Unity Tooling Contract.
 
 ## Later / deferred
 

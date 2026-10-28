@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Read-only Unity tooling capability detector (TOFF Games Production OS).
+# Read-only Unity tooling capability detector (TOFF Production OS).
 #
 # Discovers whether Unity CLI / Pipeline / related capabilities appear available
 # for an explicit Unity project path. Never installs, upgrades, authenticates,
@@ -553,7 +553,7 @@ if not cli_installed:
     run_tests_state = "UNKNOWN"
     run_tests_notes.append("CLI absent; use in-Editor Test Runner or templates/scripts/validate.sh with Unity binary")
 elif lockfile or service_state == "AVAILABLE":
-    # Live Editor / lock likely blocks batch unity test (SOWA pilot)
+    # Live Editor / lock likely blocks batch unity test (CLI pilot)
     run_tests_state = "BLOCKED"
     run_tests_backend = "cli_direct"
     run_tests_notes.append("Editor lock or reachable Pipeline instance indicates project may be open; do not auto-close Editor")

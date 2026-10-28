@@ -40,7 +40,7 @@
 - Portable template: `templates/scripts/validate.sh` (Unity binary `-runTests`).  
 - Optional alternate on CLI-enabled machines: `unity test` (version-specific behavior — re-check with `unity test --help`).  
 
-**Pilot fact (SOWA, Unity CLI `1.0.0-beta.8`):** `unity test` required the active Editor to release the project. Do **not** claim all CLI versions can run tests while the Editor is open.
+**Verified fact (Unity CLI `1.0.0-beta.8` pilot):** `unity test` required the active Editor to release the project. Do **not** claim all CLI versions can run tests while the Editor is open.
 
 See also [unity-tooling.md](unity-tooling.md).
 

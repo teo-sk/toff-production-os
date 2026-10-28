@@ -1,9 +1,9 @@
 # Unity Tooling Contract
 
-Game-agnostic contract for Unity Editor automation used by TOFF Games agents and (later) the headless orchestrator.
+Game-agnostic contract for Unity Editor automation used by AI agents and (later) a headless orchestrator.
 
-**Status:** Production OS **0.3.0** policy foundation.  
-**Pilots:** Nehokej (legacy MCP), WheelDraw (legacy MCP + UTF), SOWA (CLI Direct + Pipeline + legacy MCP).  
+**Status:** Production OS **0.3** policy foundation.  
+**Reference evidence:** [examples/legacy-mcp-workflow/](../examples/legacy-mcp-workflow/) (legacy MCP + UTF), [examples/unity-cli-pipeline/](../examples/unity-cli-pipeline/) (CLI Direct + Pipeline + legacy MCP).  
 **Not required:** Unity CLI, Pipeline, or MCP. Projects remain valid without them.
 
 Companion process docs: [tooling.md](tooling.md), [validation-strategy.md](validation-strategy.md), [philosophy.md](philosophy.md).
@@ -32,7 +32,7 @@ Detection helper (read-only): [`scripts/unity-capability-detect.sh`](../scripts/
 
 ## Conceptual capabilities
 
-These names are the integration surface for future orchestration. v0.3 documents the contract; not every capability is implemented as a studio script.
+These names are the integration surface for future orchestration. v0.3 documents the contract; not every capability is implemented as a framework script.
 
 | Capability | Intent |
 |---|---|
@@ -222,7 +222,7 @@ Requires **explicit separate human approval**. Never implied by controlled-write
 - **Never** close the user’s Editor without explicit approval.  
 - Verify **exit code and** complete NUnit/JUnit (or documented) results from **this** run.  
 
-**Pilot fact (SOWA, Unity CLI `1.0.0-beta.8`):** `unity test` required closing the active Editor that held the project. Do **not** claim all CLI versions can run tests while the Editor is open.
+**Verified fact (Unity CLI `1.0.0-beta.8` pilot):** `unity test` required closing the active Editor that held the project. Do **not** claim all CLI versions can run tests while the Editor is open.
 
 Distinguish:
 
@@ -263,13 +263,14 @@ Reusable report template: [`templates/docs/tooling-completion-report.template.md
 
 ---
 
-## Pilot evidence summary (do not overclaim)
+## Reference evidence summary (do not overclaim)
 
-| Title | Tooling | Verification |
+| Example | Tooling | Verification |
 |---|---|---|
-| Nehokej | Legacy MCP; UTF Edit Mode infra | MCP identity + controlled mutation **proven** (partial Play Mode limits) — [examples/nehokej/](../examples/nehokej/) |
-| WheelDraw | Legacy MCP; Production OS 0.2; UTF | Bootstrap portability + in-Editor UTF **reported** by studio; treat as portfolio adoption evidence, not CLI proof |
-| SOWA | CLI `1.0.0-beta.8`, Pipeline `0.9.1-exp.1`, legacy MCP kept | CLI Direct identity, `unity test` 3/3 smoke, FOV mutation+restore **proven** with conditional limits — [examples/sowa-game/](../examples/sowa-game/) |
+| [legacy-mcp-workflow](../examples/legacy-mcp-workflow/) | Legacy MCP; UTF Edit Mode | MCP identity + controlled mutation **proven** (partial Play Mode limits) |
+| [unity-cli-pipeline](../examples/unity-cli-pipeline/) | CLI `1.0.0-beta.8`, Pipeline `0.9.1-exp.1`, legacy MCP kept | CLI Direct identity, `unity test` 3/3 smoke, FOV mutation+restore **proven** with conditional limits |
+
+Bootstrap portability and in-Editor UTF have also been **reported** across additional adopter projects; treat portfolio adoption notes as supporting context, not CLI proof.
 
 ---
 

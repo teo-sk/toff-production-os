@@ -2,11 +2,13 @@
 
 ## Purpose
 
-TOFF Games builds multiple Unity titles with humans directing creative and release decisions, and AI agents proposing/implementing within explicit scope. Production OS makes that loop **repeatable, auditable, and safe** without forcing every experiment into heavyweight process.
+TOFF Production OS helps Unity teams work with AI coding agents under human direction for creative and release decisions. Agents propose and implement within explicit scope. The framework makes that loop **repeatable, auditable, and safe** without forcing every experiment into heavyweight process.
+
+Originated at TOFF Games; maintained as an open-source, game-agnostic framework. Adopters are not assumed to work at TOFF Games or share any TOFF infrastructure.
 
 ## Principles
 
-1. **One studio standard, many independent game repos.**  
+1. **One shared process standard, many independent game repos.**  
 2. **Design intent is separate from implementation status.** Approved GDD/architecture/feature acceptance are not silently rewritten to match code.  
 3. **The repository is the durable source of truth;** chat is ephemeral. Persist decisions in docs/ADRs.  
 4. **Agents propose and implement; humans approve** creative, architectural, package, and release decisions.  
@@ -21,11 +23,11 @@ Label claims clearly:
 
 | Label | Meaning |
 |---|---|
-| **Proven** | Executed and observed in a named pilot with evidence |
+| **Proven** | Executed and observed in a named verification with evidence |
 | **Partial** | Worked with known gaps (e.g. no device play, incidental YAML) |
 | **Proposed** | Designed but not yet demonstrated |
 
-Never upgrade a conditional pilot result into a studio-wide “proven” claim.
+Never upgrade a conditional pilot result into a portfolio-wide “proven” claim.
 
 ## Minimal always-on rules
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install TOFF Games Production OS templates into a Unity game repository.
+# Install TOFF Production OS templates into a Unity game repository.
 # Default: non-destructive (skip existing files). Never writes outside TARGET.
 #
 # Safety policy (conservative):

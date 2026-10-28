@@ -1,26 +1,28 @@
-# AGENTS.md — TOFF Games Production OS (studio repo)
+# AGENTS.md — TOFF Production OS (framework repo)
 
 Portable instructions for agents maintaining **this** framework repository (`toff-production-os`), not an individual game.
 
 ## Identity
 
-- **Repo:** TOFF Games Production OS  
+- **Repo:** TOFF Production OS  
 - **Purpose:** Game-agnostic process, templates, bootstrap, and validation patterns for Unity games  
 - **Version:** see [VERSION](VERSION)  
-- **Consumers:** Nehokej, WheelDraw, SOWA Game, Zuma Roguelike, Fishpond Hockey, future titles  
+- **Consumers:** Any Unity game repository that adopts the framework via bootstrap or manual template copy  
 
 This repository contains **no Unity project**. Do not invent game mechanics, scenes, or package pins here.
+
+Origin / maintainer: TOFF Games (open-source framework). Do **not** assume adopters work at TOFF Games, share TOFF infrastructure, or have access to any TOFF game source code.
 
 ## Document ownership
 
 | Doc | Authority |
 |---|---|
-| [docs/philosophy.md](docs/philosophy.md) | Studio process principles |
+| [docs/philosophy.md](docs/philosophy.md) | Process principles |
 | [docs/production-pipeline.md](docs/production-pipeline.md) | Lifecycle / stage gates |
-| [docs/studio-vs-project.md](docs/studio-vs-project.md) | Boundary between OS and games |
+| [docs/studio-vs-project.md](docs/studio-vs-project.md) | Boundary between framework and games |
 | [docs/unity-tooling.md](docs/unity-tooling.md) | Unity tooling contract, backends, safety, evidence |
 | [templates/](templates/) | Installable defaults for game repos |
-| [examples/](examples/) | Pilot evidence (reference only) |
+| [examples/](examples/) | Anonymized reference evidence |
 | [CHANGELOG.md](CHANGELOG.md) | Released framework changes |
 
 Agents **may** update factual docs after verified framework changes.  
@@ -37,12 +39,12 @@ Agents **must not** rewrite philosophy or safety rules to match a single game’
 
 ## Task lifecycle (framework work)
 
-1. **Understand** — which consumers are affected; version impact.  
+1. **Understand** — which adopters are affected; version impact.  
 2. **Plan** — list template/docs/script files; note breaking changes for bootstrap.  
 3. **Implement** — focused diff; keep templates placeholder-driven.  
 4. **Validate** — link checks, MDC frontmatter, `bash -n`, bootstrap `--help` / `--dry-run` on a disposable fixture (never a silent write to a live game), capability-detect + bootstrap test suites when those scripts change.  
 5. **Review** — update CHANGELOG + VERSION when releasing; human approval for safety-rule changes.  
-6. **Do not** mutate consumer games (Nehokej, WheelDraw, SOWA, …) unless the task explicitly names a target path.
+6. **Do not** mutate external game repositories unless the task explicitly names a target path.
 
 ## Git safety
 

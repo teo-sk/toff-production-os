@@ -1,15 +1,15 @@
-# Code workflow findings — GAME-E2E-001
+# Code workflow findings
 
-**Verification:** Proven on Nehokej (challenge JSON stub load + Edit Mode tests).
+**Verification:** Proven on a Unity game pilot (feature stub load + Edit Mode tests). Narrative anonymized for public docs.
 
 ## Intent
 
-Prove: feature spec → plan → pure C# → Edit Mode tests → evidence report → human review.
+Prove: feature spec → plan → focused C# → Edit Mode tests → evidence report → human review.
 
 ## What worked
 
 - YAML feature contract with allowed/forbidden paths and measurable acceptance.
-- Keeping domain code free of UnityEngine enabled Edit Mode UTF without scenes.
+- Keeping domain logic free of `UnityEngine` enabled Edit Mode UTF without scenes.
 - `validate.sh` distinguishing `--self-test` (script only) from real UTF runs.
 - BLOCKED exit when Editor lock present — without force-quitting the Editor.
 - Structural NUnit XML parse rejecting stale/malformed/empty suites.

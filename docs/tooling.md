@@ -1,6 +1,6 @@
 # Tooling
 
-## Studio stack
+## Recommended stack
 
 | Tool | Use |
 |---|---|

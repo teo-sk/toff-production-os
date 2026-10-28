@@ -6,7 +6,7 @@ Roles describe **jobs**, not necessarily eight concurrent processes. One agent m
 
 | Role | Primary job | Typical tools | Authority |
 |---|---|---|---|
-| Studio Lead (human) | Priority, fun, ship/no-ship | ChatGPT, Unity, dashboards | Final approval |
+| Project Lead (human) | Priority, fun, ship/no-ship | ChatGPT, Unity, dashboards | Final approval |
 | Game Design Agent | GDD, balance proposals, specs | Chat models | Recommends; no silent spec changes |
 | Technical Lead Agent | Architecture plans, impact | Cursor + repo | Drafts; significant changes need approval |
 | Implementation Agent | Code, tests, docs | Cursor + Git | Within task scope |

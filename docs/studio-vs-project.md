@@ -1,4 +1,4 @@
-# Studio vs project
+# Framework vs project
 
 ## Ownership matrix
 
@@ -12,7 +12,7 @@
 | Feature specs | Template | Real specs + acceptance |
 | Validation script | Portable template | Installed + optional config |
 | Bootstrap | Ships here | Consumer of bootstrap |
-| Pilot findings | `examples/` reference | May diverge |
+| Reference findings | `examples/` | May diverge |
 
 ## Upgrade path
 
@@ -28,4 +28,4 @@
 - Symlinking or submodule-coupling game Assets into the OS repo  
 - Forcing every game onto one folder layout (`Assets/_Game` vs `Assets/Domains`, etc.)  
 - Hardcoding absolute developer machine paths in templates  
-- Treating Nehokej pilot quirks as studio law  
+- Treating a single pilot’s quirks as framework law  

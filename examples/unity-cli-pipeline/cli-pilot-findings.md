@@ -1,9 +1,9 @@
-# SOWA Unity CLI pilot findings
+# Unity CLI / Pipeline pilot findings
 
-**Verification:** Proven on SOWA with conditional limits (2026-10-27).  
-**Authority for studio policy:** [docs/unity-tooling.md](../../docs/unity-tooling.md).
+**Verification:** Proven with conditional limits on a Unity game pilot (2026-10-27). Narrative anonymized for public docs.  
+**Authority for policy:** [docs/unity-tooling.md](../../docs/unity-tooling.md).
 
-This document records **what was actually demonstrated**. It does not prove production-grade unattended execution across the portfolio.
+This document records **what was actually demonstrated**. It does not prove production-grade unattended execution across all adopters.
 
 ## Technical setup (confirmed)
 
@@ -14,7 +14,7 @@ This document records **what was actually demonstrated**. It does not prove prod
 | Pipeline package | `0.9.1-exp.1` (`com.unity.pipeline`) |
 | AI Assistant (legacy MCP) | Kept installed; Cursor MCP config **not** rewritten |
 | UTF | Project Edit Mode smoke assembly added for tooling invariants |
-| Primary scene (pilot) | `Assets/Scenes/SampleScene.unity` |
+| Primary scene (pilot) | A sample scene under `Assets/Scenes/` |
 
 Preference order exercised: **CLI Direct** (preferred when verified) → CLI MCP (not configured) → legacy MCP (compatibility).
 
@@ -39,7 +39,7 @@ Preference order exercised: **CLI Direct** (preferred when verified) → CLI MCP
 **Fixtures (tooling smoke, not gameplay)**
 
 - Editor-only assembly under `Assets/Tests/Editor`  
-- Three NUnit Edit Mode tests: Editor version pin, SampleScene asset resolve, SampleScene enabled in Build Settings  
+- Three NUnit Edit Mode tests: Editor version pin, sample scene asset resolve, sample scene enabled in Build Settings  
 
 **Succeeded**
 
@@ -51,7 +51,7 @@ Preference order exercised: **CLI Direct** (preferred when verified) → CLI MCP
 
 - Batch `unity test` required **closing** the active Editor that held the project (exclusive lock).  
 - Production OS policy: **never** auto-close the user’s Editor.  
-- After Editor close/reopen, **legacy MCP did not automatically reconnect** (timeout until Cursor reconnected to a new relay).  
+- After Editor close/reopen, **legacy MCP did not automatically reconnect** (timeout until the IDE reconnected to a new relay).  
 - Passing tooling smoke ≠ gameplay regression coverage.
 
 ## Test C — Controlled CLI Direct mutation (CONDITIONAL PASS)
@@ -98,4 +98,4 @@ Preference order exercised: **CLI Direct** (preferred when verified) → CLI MCP
 - Read-only `scripts/unity-capability-detect.sh`  
 - Validation + evidence policy updates  
 - Cursor rule wording generalized beyond MCP-only  
-- Compatibility: Nehokej / WheelDraw need **no** mandatory CLI/Pipeline migration  
+- Compatibility: projects without CLI/Pipeline need **no** mandatory migration  

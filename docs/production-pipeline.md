@@ -1,12 +1,12 @@
 # Production pipeline
 
-Shared lifecycle for TOFF Games Unity titles. Use lightweight gates for experiments; require full evidence for production and release.
+Shared lifecycle for Unity game projects using Production OS. Use lightweight gates for experiments; require full evidence for production and release.
 
 ## Stage gates
 
 | Phase | Inputs | Deliverables | Gate |
 |---|---|---|---|
-| 0. Intake | Pitch / inspiration | Concept brief, owner, platform | Studio Lead: pursue / park / reject |
+| 0. Intake | Pitch / inspiration | Concept brief, owner, platform | Lead: pursue / park / reject |
 | 1. Design | Approved brief | GDD, art direction, constraints, first QA notes | Design lock for prototype |
 | 2. Prototype | GDD + prioritized slice | Playable slice, capture, risks | Human playtest: worth continuing |
 | 3. Production | Validated prototype | Small PRs, tests, updated docs | Feature DoD + review |
@@ -27,7 +27,7 @@ Stages may loop backwards. Kill criteria belong in the concept/GDD.
 7. **Review** — diff vs spec; human for feel/architecture/release.  
 8. **Merge & record** — update status docs/ADRs when behavior changes.
 
-## Definition of Done (studio default)
+## Definition of Done (default)
 
 - [ ] Acceptance criteria met or exceptions listed  
 - [ ] Compiles on the **project’s pinned** Unity version  

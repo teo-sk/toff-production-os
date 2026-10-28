@@ -2,7 +2,7 @@
 
 Portable onboarding for any coding agent. Prefer this file + linked docs over conversation memory.
 
-> Generated from TOFF Games Production OS {{OS_VERSION}}. Fill every `{{…}}` / `TODO` before relying on agents.
+> Generated from TOFF Production OS {{OS_VERSION}}. Fill every `{{…}}` / `TODO` before relying on agents.
 
 ## Identity
 

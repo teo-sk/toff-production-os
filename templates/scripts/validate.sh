@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Portable Unity Edit Mode validation (TOFF Games Production OS template).
+# Portable Unity Edit Mode validation (TOFF Production OS template).
 # Never claims pass without executing Unity Test Framework Edit Mode in this
 # invocation (except --self-test, which only validates this script).
 #
